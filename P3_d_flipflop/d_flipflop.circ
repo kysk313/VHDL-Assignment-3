@@ -57,12 +57,12 @@
     <comp lib="1" loc="(360,280)" name="NAND Gate"></comp>
     <comp lib="1" loc="(500,140)" name="NAND Gate"></comp>
     <comp lib="1" loc="(500,260)" name="NAND Gate"></comp>
-    <comp lib="1" loc="(290,300)" name="NOT Gate"></comp>
+    <comp lib="1" loc="(290,300)" name="NAND Gate"><a name="size" val="30"/></comp>
     <comp lib="1" loc="(840,160)" name="NAND Gate"></comp>
     <comp lib="1" loc="(840,320)" name="NAND Gate"></comp>
     <comp lib="1" loc="(980,180)" name="NAND Gate"></comp>
     <comp lib="1" loc="(980,300)" name="NAND Gate"></comp>
-    <comp lib="1" loc="(770,340)" name="NOT Gate"></comp>
+    <comp lib="1" loc="(770,340)" name="NAND Gate"><a name="size" val="30"/></comp>
     <comp lib="1" loc="(150,400)" name="NOT Gate"></comp>
     <comp lib="0" loc="(100,100)" name="Pin"><a name="label" val="D"/><a name="facing" val="east"/></comp>
     <comp lib="0" loc="(70,400)" name="Pin"><a name="label" val="CLK"/><a name="facing" val="east"/></comp>
@@ -70,8 +70,10 @@
     <comp lib="0" loc="(1140,300)" name="Pin"><a name="label" val="NQ"/><a name="output" val="true"/><a name="facing" val="west"/></comp>
     <wire from="(180,100)" to="(200,100)"/>
     <wire from="(200,100)" to="(300,100)"/>
-    <wire from="(200,100)" to="(200,300)"/>
-    <wire from="(200,300)" to="(260,300)"/>
+    <wire from="(200,100)" to="(200,290)"/>
+    <wire from="(200,290)" to="(250,290)"/>
+    <wire from="(200,290)" to="(200,310)"/>
+    <wire from="(200,310)" to="(250,310)"/>
     <wire from="(290,300)" to="(300,300)"/>
     <wire from="(180,240)" to="(240,240)"/>
     <wire from="(240,140)" to="(240,240)"/>
@@ -93,8 +95,10 @@
     <wire from="(540,140)" to="(600,140)"/>
     <wire from="(660,140)" to="(680,140)"/>
     <wire from="(680,140)" to="(780,140)"/>
-    <wire from="(680,140)" to="(680,340)"/>
-    <wire from="(680,340)" to="(740,340)"/>
+    <wire from="(680,140)" to="(680,330)"/>
+    <wire from="(680,330)" to="(730,330)"/>
+    <wire from="(680,330)" to="(680,350)"/>
+    <wire from="(680,350)" to="(730,350)"/>
     <wire from="(770,340)" to="(780,340)"/>
     <wire from="(660,280)" to="(720,280)"/>
     <wire from="(720,180)" to="(720,280)"/>
