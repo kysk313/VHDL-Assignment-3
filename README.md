@@ -7,9 +7,9 @@ Digital Logic Circuit Design · 김우준 (2023092479)
 | 문제 | 회로 | VHDL 소스 | Logisim 프로젝트 (게이트 구성) |
 |---|---|---|---|
 | 1 | RS Latch | [rs_latch.vhd](P1_rs_latch/rs_latch.vhd) | [rs_latch.circ](P1_rs_latch/rs_latch.circ) (NOR 2) |
-| 2 | D Latch (enable) | [d_latch.vhd](P2_d_latch/d_latch.vhd) | [d_latch.circ](P2_d_latch/d_latch.circ) (NAND 4, NOT 1) |
-| 3 | D Flip-Flop (rising edge) | [d_flipflop.vhd](P3_d_flipflop/d_flipflop.vhd) | [d_flipflop.circ](P3_d_flipflop/d_flipflop.circ) (Master-Slave: D Latch 2 + inverter) |
-| 4 | JK Flip-Flop (rising edge) | [jk_flipflop.vhd](P4_jk_flipflop/jk_flipflop.vhd) | [jk_flipflop.circ](P4_jk_flipflop/jk_flipflop.circ) (NAND 11, NOT 4, feedback) |
+| 2 | D Latch (enable) | [d_latch.vhd](P2_d_latch/d_latch.vhd) | [d_latch.circ](P2_d_latch/d_latch.circ) (NAND 5 only) |
+| 3 | D Flip-Flop (rising edge) | [d_flipflop.vhd](P3_d_flipflop/d_flipflop.vhd) | [d_flipflop.circ](P3_d_flipflop/d_flipflop.circ) (Master-Slave: 2 NAND D Latches + 1 inverter) |
+| 4 | JK Flip-Flop (rising edge) | [jk_flipflop.vhd](P4_jk_flipflop/jk_flipflop.vhd) | [jk_flipflop.circ](P4_jk_flipflop/jk_flipflop.circ) (NAND 15 only, Q/NQ feedback) |
 | 5 | D Flip-Flop + async Set/Clear | [d_flipflop_sc.vhd](P5_d_flipflop_sc/d_flipflop_sc.vhd) | [d_flipflop_sc.circ](P5_d_flipflop_sc/d_flipflop_sc.circ) (3-input NAND latches, Clear priority) |
 
 - 보고서 (회로도, 합성 회로도, 시뮬레이션 결과): [VHDL_Assignment_3_Report.pdf](VHDL_Assignment_3_Report.pdf)
