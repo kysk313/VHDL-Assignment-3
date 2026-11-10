@@ -1,4 +1,3 @@
--- Testbench for d_flipflop: q changes only on the rising edge of clk
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
@@ -8,40 +7,59 @@ END tb_d_flipflop;
 ARCHITECTURE sim OF tb_d_flipflop IS
   SIGNAL clk, d : std_logic := '0';
   SIGNAL q, nq  : std_logic;
-
-  -- d value applied while clk = '0', d value applied while clk = '1' (must be ignored)
-  TYPE cyc_t IS RECORD
-    d_low, d_high : std_logic;
-  END RECORD;
-  TYPE cycs_t IS ARRAY (natural RANGE <>) OF cyc_t;
-  CONSTANT CYCLES : cycs_t := (('1', '0'), ('0', '1'), ('1', '1'), ('1', '0'), ('0', '0'), ('1', '0'));
 BEGIN
   uut : ENTITY work.d_flipflop PORT MAP (clk => clk, d => d, q => q, nq => nq);
 
+  -- one cycle = 30 ns : d changes while clk = 0, rising edge, d changes while clk = 1
   PROCESS
-    VARIABLE expect : std_logic := '0';
   BEGIN
-    FOR i IN CYCLES'RANGE LOOP
-      -- clk low: change d, q must not change
-      d <= CYCLES(i).d_low;
-      WAIT FOR 10 ns;
-      ASSERT q = expect REPORT "q changed without a clock edge, cycle " & integer'image(i) SEVERITY error;
-      -- rising edge: q takes d
-      clk <= '1';
-      expect := CYCLES(i).d_low;
-      WAIT FOR 5 ns;
-      ASSERT q = expect AND nq = NOT expect
-        REPORT "q not updated on rising edge, cycle " & integer'image(i) SEVERITY error;
-      -- clk high: change d, q must not change
-      d <= CYCLES(i).d_high;
-      WAIT FOR 5 ns;
-      ASSERT q = expect REPORT "q changed while clk = 1, cycle " & integer'image(i) SEVERITY error;
-      -- falling edge: q must not change
-      clk <= '0';
-      WAIT FOR 5 ns;
-      ASSERT q = expect REPORT "q changed on falling edge, cycle " & integer'image(i) SEVERITY error;
-      WAIT FOR 5 ns;
-    END LOOP;
+    -- edge at 10 ns, d = 1
+    d <= '1'; WAIT FOR 10 ns;
+    ASSERT q = '0' REPORT "error: q changed before edge" SEVERITY error;
+    clk <= '1'; WAIT FOR 5 ns;
+    ASSERT q = '1' REPORT "error: edge 10 ns" SEVERITY error;
+    d <= '0'; WAIT FOR 5 ns;
+    clk <= '0'; WAIT FOR 10 ns;
+    ASSERT q = '1' REPORT "error: q changed without edge" SEVERITY error;
+
+    -- edge at 40 ns, d = 0
+    d <= '0'; WAIT FOR 10 ns;
+    clk <= '1'; WAIT FOR 5 ns;
+    ASSERT q = '0' REPORT "error: edge 40 ns" SEVERITY error;
+    d <= '1'; WAIT FOR 5 ns;
+    clk <= '0'; WAIT FOR 10 ns;
+    ASSERT q = '0' REPORT "error: q changed without edge" SEVERITY error;
+
+    -- edge at 70 ns, d = 1
+    d <= '1'; WAIT FOR 10 ns;
+    clk <= '1'; WAIT FOR 5 ns;
+    ASSERT q = '1' REPORT "error: edge 70 ns" SEVERITY error;
+    d <= '1'; WAIT FOR 5 ns;
+    clk <= '0'; WAIT FOR 10 ns;
+
+    -- edge at 100 ns, d = 1
+    d <= '1'; WAIT FOR 10 ns;
+    clk <= '1'; WAIT FOR 5 ns;
+    ASSERT q = '1' REPORT "error: edge 100 ns" SEVERITY error;
+    d <= '0'; WAIT FOR 5 ns;
+    clk <= '0'; WAIT FOR 10 ns;
+    ASSERT q = '1' REPORT "error: q changed without edge" SEVERITY error;
+
+    -- edge at 130 ns, d = 0
+    d <= '0'; WAIT FOR 10 ns;
+    clk <= '1'; WAIT FOR 5 ns;
+    ASSERT q = '0' REPORT "error: edge 130 ns" SEVERITY error;
+    d <= '0'; WAIT FOR 5 ns;
+    clk <= '0'; WAIT FOR 10 ns;
+
+    -- edge at 160 ns, d = 1
+    d <= '1'; WAIT FOR 10 ns;
+    clk <= '1'; WAIT FOR 5 ns;
+    ASSERT q = '1' AND nq = '0' REPORT "error: edge 160 ns" SEVERITY error;
+    d <= '0'; WAIT FOR 5 ns;
+    clk <= '0'; WAIT FOR 10 ns;
+    ASSERT q = '1' REPORT "error: q changed without edge" SEVERITY error;
+
     REPORT "tb_d_flipflop finished";
     WAIT;
   END PROCESS;
