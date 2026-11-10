@@ -1,7 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
--- D latch with enable: q follows d while en = '1', holds while en = '0'
+-- D latch with enable
 ENTITY d_latch IS
   PORT (
     en : IN  std_logic;   -- Enable signal
@@ -12,7 +12,7 @@ ENTITY d_latch IS
 END d_latch;
 
 ARCHITECTURE bhv OF d_latch IS
-  SIGNAL q_internal : std_logic := '0';   -- Internal signal to represent output q
+  SIGNAL q_internal : std_logic := '0';
 BEGIN
   q  <= q_internal;
   nq <= NOT q_internal;
