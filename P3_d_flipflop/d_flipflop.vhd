@@ -1,7 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
--- Positive-edge-triggered D flip-flop: q takes d only on the rising edge of clk
+-- D flip-flop (rising edge)
 ENTITY d_flipflop IS
   PORT (
     clk : IN  std_logic;   -- Clock signal
@@ -12,7 +12,7 @@ ENTITY d_flipflop IS
 END d_flipflop;
 
 ARCHITECTURE bhv OF d_flipflop IS
-  SIGNAL q_internal : std_logic := '0';   -- Internal signal to represent output q
+  SIGNAL q_internal : std_logic := '0';
 BEGIN
   q  <= q_internal;
   nq <= NOT q_internal;
